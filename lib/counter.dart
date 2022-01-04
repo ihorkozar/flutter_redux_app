@@ -29,7 +29,10 @@ class Counter extends StatelessWidget {
                 builder: (context, state) => state.widget,
               ),
             ),
-            ElevatedButton(onPressed: () => store.dispatch(GetImgAction()), child: const Text('Get Image')),
+            ElevatedButton(
+              onPressed: () => store.dispatch(loadImgThunkAction(store)),
+              child: const Text('Get Image'),
+            ),
             SizedBox(
               width: 200,
               child: TextField(
@@ -42,15 +45,22 @@ class Counter extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                    onPressed: () => store.dispatch(SetTextAction(text: inputText)),
-                    child: const Text('SET')),
+                SizedBox(
+                  width: 80,
+                  child: ElevatedButton(
+                      onPressed: () =>
+                          store.dispatch(SetTextAction(text: inputText)),
+                      child: const Text('SET')),
+                ),
                 const SizedBox(
                   width: 32,
                 ),
-                ElevatedButton(
-                    onPressed: () => store.dispatch(ResetAction()),
-                    child: const Text('RESET')),
+                SizedBox(
+                  width: 80,
+                  child: ElevatedButton(
+                      onPressed: () => store.dispatch(ResetAction()),
+                      child: const Text('RESET')),
+                ),
               ],
             ),
             StoreConnector<AppState, AppState>(
