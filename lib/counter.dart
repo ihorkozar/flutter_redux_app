@@ -20,6 +20,16 @@ class Counter extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              width: 150,
+              height: 150,
+              margin: const EdgeInsets.all(16),
+              child: StoreConnector<AppState, AppState>(
+                converter: (store) => store.state,
+                builder: (context, state) => state.widget,
+              ),
+            ),
+            ElevatedButton(onPressed: () => store.dispatch(GetImgAction()), child: const Text('Get Image')),
             SizedBox(
               width: 200,
               child: TextField(
